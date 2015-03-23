@@ -1,5 +1,5 @@
 # spring-multi-module-oauth-sso
-An example of a multi-module web app using spring-security-oauth based on [this article series](http://spring.io/blog/2015/02/03/sso-with-oauth2-angular-js-and-spring-security-part-v) published by [Dave Syer](http://spring.io/team/dsyer).
+An example of a **multi-module** web app with **single-sign-on** using **spring-security-oauth** based on [this article series](http://spring.io/blog/2015/02/03/sso-with-oauth2-angular-js-and-spring-security-part-v) published by [Dave Syer](http://spring.io/team/dsyer).
 
 ## Introduction
 
