@@ -14,12 +14,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.security.Http401AuthenticationEntryPoint;
 import org.springframework.cloud.security.oauth2.sso.EnableOAuth2Sso;
 import org.springframework.cloud.security.oauth2.sso.OAuth2SsoConfigurerAdapter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -33,7 +36,18 @@ public class AuthClientApplication extends WebMvcConfigurerAdapter {
 	public static void main(String[] args) {
 		SpringApplication.run(AuthClientApplication.class, args);
 	}
+	
+	@Configuration
+	@EnableRedisHttpSession // <1>
+	public static class HttpSessionConfig {
 
+		@Bean
+		public JedisConnectionFactory connectionFactory() {
+			return new JedisConnectionFactory(); // <2>
+		}
+	}
+
+	
 	/**
 	 * @see https://github.com/dsyer/spring-security-angular/blob/master/oauth2/ui/src/main/java/demo/UiApplication.java
 	 * @author mefernandez
