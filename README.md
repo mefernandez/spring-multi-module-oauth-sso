@@ -21,17 +21,15 @@ Follow these steps to try it right from the source code:
 2. Download [Redis database](http://redis.io/download), unzip it, `cd` into Redis directory and run `make` to compile it.
 3. Run `src/redis-server` to start Redis in port `6379`.
 4. Launch oAuth server project from Eclipse by right-clicking on `AuthserverApplication` class -> `Run As..` -> `Java Application`.
-5. Set a breakpoint in method `createSessionCookie()` in class `org.springframework.session.web.http.CookieHttpSessionStrategy`, right after the `TODO` comment:
+5. Set a breakpoint in method `createSessionCookie()` in class `org.springframework.session.web.http.CookieHttpSessionStrategy`, right after the `TODO` comment (**more on this later.**):
 
-```java
+  ```java
         sessionCookie.setPath(cookiePath(request));
         // TODO set domain?
 
         if(sessionIds.isEmpty()) {
-```
-
-**More on this later.**
-
+  ```
+        
 6. Launch both client projects the same way, but pick `Debug As..` this time.
 7. Go to http://localhost:9991/client1. The execution will stop at the breakpoint. Open Eclipse's `Display View` and execute this line of code: `sessionCookie.setPath("/")` every time it stops there, then continue the execution with `F8`.
 8. Follow the `Login` link and authenticate with `user:password`.
